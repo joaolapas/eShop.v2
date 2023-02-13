@@ -1,0 +1,75 @@
+@use '../../styles/variables.sass' as styles
+
+.header
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 80px
+    box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75)
+    background: styles.$mainLight
+    color: styles.$mainDark
+
+    .headerContainer
+        display: flex
+        align-items: center
+        justify-content: space-between
+        padding: 0 3%
+        width: 100%
+        max-width: 1400px
+
+
+        .logo
+            font-size: 3rem
+            text-decoration: none
+            color: styles.$mainDark
+
+            span
+                color: styles.$lightNegative
+
+
+        .navbar
+            .navList
+                display: flex
+                width: 100%
+
+                .navItem, .navItemLogin, .navItemAdmin
+                    margin-left: 2rem
+                    list-style: none
+                    transition: all 0.2s ease-in-out
+                    text-decoration: none
+                    color: inherit
+                    font-size: 1.3rem
+
+                    &:hover
+                        color: styles.$lightNegative
+                        transition: all 0.2s ease-in-out
+                        cursor: pointer
+
+                    .cartIcon
+                       .cartCount
+                           position: relative
+                           top: -10px
+                           left: 3px
+                           color: styles.$lightNegative
+                
+                .navItemLogin
+                    margin-left: 2rem
+                    list-style: none
+                    transition: all 0.2s ease-in-out
+                    &:hover
+                        background: styles.$lightNegative
+                        color: styles.$mainLight
+                        transition: all 0.2s ease-in-out
+                        cursor: pointer
+                           
+                        
+                
+                .navItemLogin
+                    background: styles.$mainDark
+                    color: styles.$mainLight
+                    padding: 0 10px
+                    border-radius: 50px
+    
+
+            
+
