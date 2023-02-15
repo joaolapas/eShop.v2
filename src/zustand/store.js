@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const useProducts = create(set => ({
   items: [],
-  cart:[],
+  cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
   cartTotalPrice: 0,
   cartCounter: 0,
   status: null,
@@ -30,6 +30,7 @@ const useProducts = create(set => ({
         let updatedCart = state.cart.map((item) => {
           if (item.id === id) {
             exists = true;
+            
             return {
               ...item,
               quantity: item.quantity + quantity,
@@ -43,6 +44,7 @@ const useProducts = create(set => ({
             { name:name, price, image, id, description, quantity },
             
           ];
+          
         }
         return {
           cart: updatedCart,
@@ -121,11 +123,25 @@ const useProducts = create(set => ({
       updatedCart.forEach((item) => {
         updatedPrice += item.price * item.quantity;
       });
+      
       return {
         cart: updatedCart,
         cartTotalPrice: updatedPrice,
       };
     });
+  },
+  updateCounter: () => {
+    set((state) => {
+      let cartItems = state.cart;
+      let updatedCount = 0
+      cartItems.forEach((item) => {
+        updatedCount += item.quantity
+      });
+      
+      return {
+        cartCounter: updatedCount
+      };
+    })
   }
   
 }))

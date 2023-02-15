@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeaderSass from "./Header.module.sass";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -7,7 +7,12 @@ import useProducts from "../../zustand/store";
 const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
-  const { cartCounter } = useProducts()
+  const { cart, cartCounter, updateCounter } = useProducts()
+
+  useEffect(() => {
+    updateCounter()
+  }, [cart])
+  
   return (
     <div className={HeaderSass.header}>
       <div className={HeaderSass.headerContainer}>
