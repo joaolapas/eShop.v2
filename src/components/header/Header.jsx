@@ -1,13 +1,34 @@
 import React, { useState, useEffect } from "react";
 import HeaderSass from "./Header.module.sass";
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useProducts from "../../zustand/store";
+import { toast, ToastContainer } from "react-toastify";
 
 const Header = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   const [isLogged, setIsLogged] = useState(false);
-  const { cart, cartCounter, updateCounter } = useProducts()
+  const { cart, cartCounter, updateCounter, auth, setAuth } = useProducts()
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    console.log("logout")
+    setAuth({
+      name: '',
+      email: '',
+      _id: '',
+      userLoaded: false
+    })
+    localStorage.removeItem('token')
+    setIsLogged(false)
+    toast.error('Logged out')
+    setTimeout(()=>navigate('/'), 2000)
+  }
+
+  useEffect(()=>{
+    if(auth.userLoaded){
+    setIsLogged(true)
+  }},[auth])
 
   useEffect(() => {
     updateCounter()
@@ -23,7 +44,7 @@ const Header = () => {
             <Link to='/contact' className={HeaderSass.navItem}>Contact</Link>
             {isLogged && <Link to='orders' className={HeaderSass.navItem}>Orders</Link>}
             {isAdmin && <Link to='admin' className={HeaderSass.navItemAdmin}>Admin</Link>}
-            <Link to='login' className={HeaderSass.navItemLogin}>{isLogged ? 'Logout' : 'Login'}</Link>
+            {isLogged ? <button onClick={()=>handleLogout()} className={HeaderSass.navItemLogin}>Logout</button> : <Link to='/login' className={HeaderSass.navItemLogin}>Login</Link>}
             <Link to='/cart' className={HeaderSass.navItem}>
               <div className={HeaderSass.cartIcon}>
                 <FaShoppingCart />

@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 import axios from 'axios'
+import { url } from './api'
+import jwtDecode from 'jwt-decode'
 
 const useProducts = create(set => ({
   items: [],
@@ -7,12 +9,76 @@ const useProducts = create(set => ({
   cartTotalPrice: 0,
   cartCounter: 0,
   status: null,
+  auth: {
+    token: localStorage.getItem('token'),
+    name: '',
+    email: '',
+    password: '',
+    _id: '',
+    registerStatus: '',
+    registerError: '',
+    loginStatus: '',
+    loginError: '',
+    userLoaded: false
+  },
+  notifications: '',
+  registerUser: async (values) => {
+    try{
+      const token = await axios.post(`${url}/register`, {
+        name: values.name,
+        email: values.email,
+        password: values.password
+      })
+      localStorage.setItem('token', token.data)
+      set(() => ({notifications: 'Successfully registered!'}))
+      return token.data 
+    }catch(err){
+      set(()=> ({notifications: err.response.data}))
+      
+      return err.response.data
+    }
+  },
+  login: async (values) => {
+    try {
+      const response = await axios.post(`${url}/login`, {
+        email: values.email,
+        password: values.password
+      })
+      const decoded = jwtDecode(response.data)
+      localStorage.setItem('token', response.data)
+      set(state => ({
+        auth: {
+          ...state.auth,
+          token: response.data,
+          name: decoded.name,
+          email: decoded.email,
+          _id: decoded._id,
+          userLoaded: true
+        },
+        notifications: 'Welcome back!'
+      }))
+      return response.data
+    } catch (err) {
+      set(() => ({
+        notifications: err.response.data
+      }))
+      return err.response.data
+    }
+  },
+  setAuth: (auth) => {
+    set(state => ({
+      auth: {
+        ...state.auth,
+        ...auth,
+      }
+    }))
+  },
+  resetNotifications: () => { set(()=> ({notifications: ''})) },
 
   fetch: async () => {
     try {
       set(state => ({ ...state, status: 'pending' }))
       const response = await axios.get('http://localhost:5001/products')
-      console.log(response)
       set(state => ({ ...state, status: 'success', items: response.data }))
     } catch (error) {
       set(state => ({ ...state, status: 'rejected' }))
@@ -22,7 +88,6 @@ const useProducts = create(set => ({
 
   addToCart: (props) => {
     const { name, price, image, id, description } = props;
-    console.log('props em store', props);
     const quantity = 1;
     if (id !== "") {
       set((state) => {

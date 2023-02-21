@@ -1,9 +1,23 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Contact, Admin, Login, Register, Cart, Orders, ResetPassword } from './pages/index';
+import {
+  Home,
+  Contact,
+  Admin,
+  Login,
+  Register,
+  Cart,
+  Orders,
+  ResetPassword,
+  CheckoutSuccess,
+  Dashboard,
+  Products
+} from "./pages/index";
 import Header from "./components/header/Header";
 
 const App = () => {
+  
+
   return (
     <div className="main">
       <Router>
@@ -15,8 +29,13 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/admin" element={<Admin />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="products" element={<Products />} />
+          
+          </Route>
+          <Route path="/resetPassword" element={<ResetPassword />} />
+          <Route path='/checkoutSuccess' element={<CheckoutSuccess />} />
         </Routes>
       </Router>
     </div>

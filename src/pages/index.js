@@ -6,3 +6,6 @@ export {default as Orders} from './orders/Orders';
 export {default as Login} from './autentication/login/Login';
 export {default as Register} from './autentication/register/Register';
 export {default as ResetPassword} from './autentication/resetPassword/ResetPassword';
+export {default as CheckoutSuccess} from './checkoutSuccess/CheckoutSuccess';
+export {default as Dashboard} from './admin/dashboard/Dashboard';
+export {default as Products} from './admin/products/Products';

@@ -1,0 +1,71 @@
+@use '../../styles/variables.sass' as styles
+
+
+
+.container
+    width: 100%
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+    .formContainer
+        display: flex
+        flex-direction: column
+        padding: 50px
+        border: 2px solid gray
+        border-radius: 10px
+        background: styles.$mainDark
+        color: styles.$mainLight
+        min-width: 400px
+
+        
+        .form
+            display: flex
+            flex-direction: column
+            
+
+            h2, input, button
+                margin-bottom: 20px
+                height: 30px
+                border-radius: 5px
+                padding: 0 5px
+                font-weight: 100
+
+            .formButton
+                background: styles.$lightPositive
+                color: styles.$mainLight
+                font-size: 1.3rem
+                transition: all 0.2s ease-in-out
+                border: none
+                &:hover
+                    background: styles.$lightNegative
+                    transition: all 0.2s ease-in-out
+                    cursor: pointer
+            .loginFormRegister
+                background: styles.$mainLight
+                color: styles.$lightPositive
+                font-size: 1.3rem
+                transition: all 0.2s ease-in-out
+                border: none
+                &:hover
+                    background: styles.$lightNegative
+                    color: styles.$mainLight
+                    transition: all 0.2s ease-in-out
+                    cursor: pointer
+            
+            .loginReset
+                text-decoration: none
+                color: styles.$mainLight
+                transition: all 0.2s ease-in-out
+                &:hover
+                    color: styles.$lightNegative
+                    transition: all 0.2s ease-in-out
+            
+.title
+    font-size: 2.5rem
+    align-self: center
+    margin-bottom: 50px !important
+            
+            
