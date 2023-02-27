@@ -112,7 +112,7 @@ const Cart = () => {
             <div className={CartSass.tableBody}>
               {cart.map((product) => {
                 return (
-                  <div className={CartSass.card} key={product.id}>
+                  <div className={CartSass.card} key={product._id}>
                     <div className={CartSass.productSection}>
                       <img
                         className={CartSass.image}
@@ -123,7 +123,7 @@ const Cart = () => {
                         <h2>{product.name}</h2>
                         <h4>{product.description}</h4>
                         <button
-                          onClick={() => deleteItem(product.id)}
+                          onClick={() => deleteItem(product._id)}
                           className={CartSass.removeItem}
                         >
                           remove
@@ -134,19 +134,19 @@ const Cart = () => {
                     <h3>
                       <button
                         className={CartSass.qtyButton}
-                        onClick={() => qtySubtractOne(product.id)}
+                        onClick={() => qtySubtractOne(product._id)}
                       >
                         -
                       </button>
                       {product.quantity}
                       <button
                         className={CartSass.qtyButton}
-                        onClick={() => qtyAddOne(product.id)}
+                        onClick={() => qtyAddOne(product._id)}
                       >
                         +
                       </button>
                     </h3>
-                    <h3>{product.price * product.quantity}€</h3>
+                    <h3>{(product.price * product.quantity).toFixed(2)}€</h3>
                   </div>
                 );
               })}

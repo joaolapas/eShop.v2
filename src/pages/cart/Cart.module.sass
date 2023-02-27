@@ -42,7 +42,8 @@
                 display: flex
                 .image
                     height: 100px
-                    width: auto
+                    width: 100px
+                    object-fit: cover
                 .productData
                     display: flex
                     flex-direction: column
@@ -56,6 +57,7 @@
                         border: none
                         border-radius: 10px
                         transition: all 0.2s ease-in-out
+                        width: 100px
                         &:hover
                             background: styles.$lightNegative
                             color: styles.$mainLight

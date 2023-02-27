@@ -9,3 +9,6 @@ export {default as ResetPassword} from './autentication/resetPassword/ResetPassw
 export {default as CheckoutSuccess} from './checkoutSuccess/CheckoutSuccess';
 export {default as Dashboard} from './admin/dashboard/Dashboard';
 export {default as Products} from './admin/products/Products';
+export {default as AdminOrders} from './admin/adminOrders/AdminOrders'
+export {default as Users} from './admin/users/Users';
+export {default as CreateProduct} from './admin/products/CreateProduct';

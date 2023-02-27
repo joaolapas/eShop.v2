@@ -11,7 +11,10 @@ import {
   ResetPassword,
   CheckoutSuccess,
   Dashboard,
-  Products
+  Products,
+  AdminOrders,
+  Users,
+  CreateProduct
 } from "./pages/index";
 import Header from "./components/header/Header";
 
@@ -31,7 +34,11 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />}>
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="products" element={<Products />} />
+            <Route path="products" element={<Products />}>
+              <Route path="createProduct" element={<CreateProduct />} />
+            </Route>
+            <Route path="adminOrders" element={<AdminOrders />} />
+            <Route path="users" element={<Users />} />
           
           </Route>
           <Route path="/resetPassword" element={<ResetPassword />} />

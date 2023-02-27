@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import jwtDecode from "jwt-decode";
 
 const Home = () => {
-  const { items, status, fetch, addToCart, cart, auth, setAuth } = useProducts();
+  const { items, status, fetchProducts, addToCart, cart, setAuth } = useProducts();
   
   useEffect(() => {
     if (localStorage.token) {
@@ -16,13 +16,14 @@ const Home = () => {
         email: decoded.email,
         name: decoded.name,
         _id: decoded._id,
+        isAdmin: decoded.isAdmin,
         userLoaded: true
       })
     }
   }, []);
 
   useEffect(() => {
-    fetch();
+    fetchProducts();
   }, []);
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -60,7 +61,7 @@ const Home = () => {
       {status === "rejected" && <p>Failed to fetch products.</p>}
       <ul className={HomeSass.listContainer}>
         {items.map((item) => (
-          <li key={item.id} className={HomeSass.itemCard}>
+          <li key={item._id} className={HomeSass.itemCard}>
             <img className={HomeSass.image} src={item.image} alt={item.name} />
             <h3 className={HomeSass.name}>{item.name}</h3>
             <h2 className={HomeSass.price}>{`€${item.price}`}</h2>
