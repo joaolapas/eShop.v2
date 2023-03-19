@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import {url} from "../../zustand/api";
 import jwtDecode from "jwt-decode";
-
+ 
 const Cart = () => {
   const {
     cart,

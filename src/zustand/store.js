@@ -10,6 +10,7 @@ const useProducts = create(set => ({
   cartTotalPrice: 0,
   cartCounter: 0,
   status: null,
+  isLogged: false,
   auth: {
     token: localStorage.getItem('token'),
     name: '',
@@ -27,6 +28,15 @@ const useProducts = create(set => ({
   product:'',
   orders: [],
   users: [],
+  hamburgerMenu: false,
+
+
+
+  toggleHamburgerMenu: () => {
+    set(state => ({
+      hamburgerMenu: !state.hamburgerMenu
+    }))
+  },
 
   fetchOrders: async () => {
     try {
@@ -49,7 +59,11 @@ const useProducts = create(set => ({
     }
   },
 
-
+  setIsLogged:(boolValue) => {
+    set(() => ({
+      isLogged: boolValue
+    }))
+  },
 
   registerUser: async (values) => {
     try{

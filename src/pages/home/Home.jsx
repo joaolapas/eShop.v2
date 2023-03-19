@@ -3,24 +3,11 @@ import useProducts from "../../zustand/store";
 import HomeSass from "./Home.module.sass";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import jwtDecode from "jwt-decode";
 
 const Home = () => {
   const { items, status, fetchProducts, addToCart, cart, setAuth } = useProducts();
   
-  useEffect(() => {
-    if (localStorage.token) {
-      const decoded = jwtDecode(localStorage.token);
-      //console.log(decoded);
-      setAuth({
-        email: decoded.email,
-        name: decoded.name,
-        _id: decoded._id,
-        isAdmin: decoded.isAdmin,
-        userLoaded: true
-      })
-    }
-  }, []);
+  
 
   useEffect(() => {
     fetchProducts();
