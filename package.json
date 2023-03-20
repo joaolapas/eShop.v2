@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://joaolapas.github.io/eShop.v2/",
+  "homepage": "https://joaolapas.github.io/eShop/",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
@@ -29,7 +29,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "PUBLIC_URL='/eShop.v2' react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
