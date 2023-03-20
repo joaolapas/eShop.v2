@@ -73,13 +73,14 @@
                     border-radius: 50px
  
 .iconsContainer  
-    display: flex
+    display: none
+    @media screen and (max-width: 770px)
+        display: flex
     .hamburger
-        display: none
+        display: inline-block
         transition: all 0.2s ease-in-out
         font-size: 3rem
-        @media screen and (max-width: 770px)
-            display: inline-block
+        
         
         &:hover
             cursor: pointer
