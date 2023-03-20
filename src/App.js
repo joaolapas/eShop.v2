@@ -23,10 +23,10 @@ const App = () => {
 
   return (
     <div className="main">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Header />
         <Routes>
-          <Route path="/eShop.v2/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/contact" element={<Contact />} />
